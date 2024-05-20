@@ -1,0 +1,5 @@
+# ignore node_modules, env, and .git
+
+node_modules
+.env
+.git
