@@ -256,6 +256,7 @@ const studentSchema = new mongoose.Schema(
     },
     applicationNumber: {
       type: Number,
+      unique: true,
     },
   },
   { timestamps: true }

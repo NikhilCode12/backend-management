@@ -4,6 +4,7 @@ import mongoose from "mongoose";
 import dotenv from "dotenv";
 import multer from "multer";
 import grid from "gridfs-stream";
+import cors from "cors";
 import path from "path";
 import fs from "fs";
 import Student from "./model/StudentSchema.js";
@@ -16,6 +17,11 @@ const app = express();
 dotenv.config();
 const port = process.env.PORT || 5000;
 const MONGO_URI = process.env.MONGO_URL;
+app.use(
+  cors({
+    origin: "http://localhost:3000",
+  })
+);
 app.use(bodyParser.json());
 
 // Middleware for checking if application number passed
