@@ -251,12 +251,13 @@ const studentSchema = new mongoose.Schema(
       ref: "upload.files",
     },
     createdAt: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "upload.files",
+      type: Date,
+      default: Date.now,
     },
     applicationNumber: {
       type: Number,
       unique: true,
+      required: true,
     },
   },
   { timestamps: true }
