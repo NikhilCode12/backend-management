@@ -19,7 +19,7 @@ const studentSchema = new mongoose.Schema(
       required: true,
     },
     regDate: {
-      type: Date,
+      type: String,
       required: true,
     },
     rollNo: {
@@ -29,10 +29,11 @@ const studentSchema = new mongoose.Schema(
       type: String,
     },
     registrationForm: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "upload.files",
+      type: String,
     },
-    admitCard: { type: mongoose.Schema.Types.ObjectId, ref: "upload.files" },
+    admitCard: {
+      type: String,
+    },
     first_name: {
       type: String,
       required: true,
@@ -87,8 +88,7 @@ const studentSchema = new mongoose.Schema(
       required: true,
     },
     category_certificate: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "upload.files",
+      type: String,
     },
     region: {
       type: String,
@@ -138,8 +138,8 @@ const studentSchema = new mongoose.Schema(
       required: true,
     },
     marksheet_10: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "upload.files",
+      type: String,
+      required: true,
     },
     board_12: {
       type: String,
@@ -185,8 +185,8 @@ const studentSchema = new mongoose.Schema(
       required: true,
     },
     marksheet_12: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "upload.files",
+      type: String,
+      required: true,
     },
     university: {
       type: String,
@@ -230,40 +230,74 @@ const studentSchema = new mongoose.Schema(
     p_3: {
       type: Number,
     },
+    t_m_total: {
+      type: Number,
+    },
+    m_o_total: {
+      type: Number,
+    },
+    p_total: {
+      type: Number,
+    },
+    pcm_marks: {
+      type: Number,
+    },
+    pcm_percentage: {
+      type: Number,
+    },
     diploma_certificate: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "upload.files",
+      type: String,
     },
     paymentReceipt: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "upload.files",
+      type: String,
+      required: true,
     },
     candidateSignature: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "upload.files",
+      type: String,
+      required: true,
     },
     parentSignature: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "upload.files",
+      type: String,
+      required: true,
     },
     passportPhoto: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "upload.files",
+      type: String,
+      required: true,
     },
     createdAt: {
-      type: Date,
-      default: Date.now,
+      type: String,
+      required: true,
     },
     applicationNumber: {
-      type: Number,
+      type: String,
       unique: true,
       required: true,
+    },
+    choices: {
+      btechChecked: {
+        cse_1st_shift: { type: Boolean, default: false },
+        it_1st_shift: { type: Boolean, default: false },
+        ece_1st_shift: { type: Boolean, default: false },
+        eee_1st_shift: { type: Boolean, default: false },
+        cse_2nd_shift: { type: Boolean, default: false },
+        it_2nd_shift: { type: Boolean, default: false },
+        ece_2nd_shift: { type: Boolean, default: false },
+      },
+      leToBtechChecked: {
+        cse_1st_shift_le: { type: Boolean, default: false },
+        it_1st_shift_le: { type: Boolean, default: false },
+        ece_1st_shift_le: { type: Boolean, default: false },
+        eee_1st_shift_le: { type: Boolean, default: false },
+        cse_2nd_shift_le: { type: Boolean, default: false },
+        it_2nd_shift_le: { type: Boolean, default: false },
+        ece_2nd_shift_le: { type: Boolean, default: false },
+      },
     },
   },
   { timestamps: true }
 );
 
-const Student =
-  mongoose.models.Student || mongoose.model("Student", studentSchema);
+const NewStudent =
+  mongoose.models.Student || mongoose.model("NewStudent", studentSchema);
 
-export default Student;
+export default NewStudent;

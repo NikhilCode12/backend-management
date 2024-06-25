@@ -3,7 +3,7 @@ import bodyParser from "body-parser";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 import cors from "cors";
-import Student from "./model/StudentSchema.js";
+import NewStudent from "./model/StudentSchema.js";
 
 const app = express();
 dotenv.config();
@@ -33,7 +33,7 @@ mongoose
 // saving student data on db
 app.post("/submit-form", async (req, res) => {
   const data = req.body;
-  const newData = new Student(data);
+  const newData = new NewStudent(data);
   try {
     await newData.save();
     res.status(201).json({ message: "Student data submitted successfully!" });
@@ -46,11 +46,21 @@ app.post("/submit-form", async (req, res) => {
 app.get("/student", async (req, res) => {
   const { applicationNumber } = req.query;
   try {
-    const student = await Student.findOne({
+    const student = await NewStudent.findOne({
       applicationNumber: applicationNumber,
     });
     if (student) return res.status(200).json(student);
     else res.status(400).json({ message: "Student not found" });
+  } catch (err) {
+    res.status(400).json("Error in fetching student data: ", err.message);
+  }
+});
+
+app.get("/student/all", async (req, res) => {
+  try {
+    const student = await NewStudent.find();
+    if (student) return res.status(200).json(student);
+    else res.status(400).json({ message: "No Record found" });
   } catch (err) {
     res.status(400).json("Error in fetching student data: ", err.message);
   }
