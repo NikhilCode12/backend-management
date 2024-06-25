@@ -32,7 +32,7 @@ app.post("/submit-form", async (req, res) => {
   const newData = new NewStudent(data);
   try {
     await newData.save();
-    res.status(201).json({ message: "Student data submitted successfully!" });
+    res.status(200).json({ message: "Student data submitted successfully!" });
   } catch (err) {
     res.status(400).json("Error in submitting data: ", err.message);
   }
